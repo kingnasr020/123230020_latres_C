@@ -22,14 +22,14 @@ class MyApp extends StatelessWidget {
 
   const MyApp({super.key, required this.username});
 
-  // Warna utama maroon elegan
+  // Warna utama 
   static const Color primaryColor = Color(0xFF800020);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'King Store',
+      title: 'King Games Store',
       theme: ThemeData(
         useMaterial3: true,
 

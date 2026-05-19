@@ -16,8 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordHidden = true;
 
   void login() async {
-    if (usernameController.text.isEmpty ||
-        passwordController.text.isEmpty) {
+    final username = usernameController.text.trim();
+    final password = passwordController.text.trim();
+
+    // Validasi kosong
+    if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Username dan password wajib diisi'),
@@ -26,27 +29,37 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    // Password harus NIM
-    if (passwordController.text == '123230020') {
-      await SessionHelper.saveUsername(usernameController.text);
-
-      if (!mounted) return;
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => MainPage(
-            username: usernameController.text,
-          ),
+    // Username minimal 5 karakter
+    if (username.length < 5) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Username minimal 5 karakter'),
         ),
       );
-    } else {
+      return;
+    }
+
+    // Password harus 3 digit
+    if (password != '020') {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Password salah'),
         ),
       );
+      return;
     }
+
+    // Simpan session
+    await SessionHelper.saveUsername(username);
+
+    if (!mounted) return;
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MainPage(username: username),
+      ),
+    );
   }
 
   @override
@@ -58,7 +71,6 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header maroon melengkung
               Container(
                 height: 180,
                 width: double.infinity,
@@ -84,7 +96,6 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
-                      // Logo
                       Container(
                         width: 120,
                         height: 120,
@@ -108,9 +119,8 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 20),
 
-                      // Nama toko
                       Text(
-                        'KING STORE',
+                        'KING GAMES STORE',
                         style: TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.bold,
@@ -121,9 +131,8 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 8),
 
-                      // Tagline
                       const Text(
-                        'Belanja mudah, harga bersahabat',
+                        'Hidup hanya sementara, game selamanya',
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 15,
@@ -132,7 +141,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 40),
 
-                      // Username
                       TextField(
                         controller: usernameController,
                         decoration: const InputDecoration(
@@ -143,7 +151,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 16),
 
-                      // Password
                       TextField(
                         controller: passwordController,
                         obscureText: isPasswordHidden,
@@ -158,8 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () {
                               setState(() {
-                                isPasswordHidden =
-                                    !isPasswordHidden;
+                                isPasswordHidden = !isPasswordHidden;
                               });
                             },
                           ),
@@ -168,7 +174,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 28),
 
-                      // Tombol login
                       ElevatedButton(
                         onPressed: login,
                         child: const Text(
@@ -179,7 +184,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       const SizedBox(height: 40),
 
-                      // Footer icon
                       Icon(
                         Icons.shopping_cart_checkout,
                         size: 90,

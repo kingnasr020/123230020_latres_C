@@ -184,7 +184,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Selamat datang di King Store',
+                        'Selamat datang di King Games Store',
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 15,
@@ -212,10 +212,8 @@ class ProfilePage extends StatelessWidget {
                 icon: Icons.info_outline,
                 title: 'Deskripsi',
                 content:
-                      'King Store merupakan aplikasi toko online yang '
-                      'menyediakan berbagai kebutuhan sehari-hari, '
-                      'mulai dari makanan, fashion, hingga aksesoris '
-                      'dengan harga terjangkau.',
+                    'King Games Store adalah platform digital '
+                    'yang menawarkan koleksi game terlengkap.',
               ),
 
               // Kesan
@@ -224,9 +222,7 @@ class ProfilePage extends StatelessWidget {
                 icon: Icons.favorite_border,
                 title: 'Kesan',
                 content:
-                    'Belajar Flutter pada praktikum Pemrograman Mobile '
-                    'sangat menyenangkan karena saya dapat memahami '
-                    'cara membuat aplikasi yang modern dan interaktif.',
+                    'Belajar Flutter sangat menyenangkan',
               ),
 
               // Pesan
@@ -235,9 +231,25 @@ class ProfilePage extends StatelessWidget {
                 icon: Icons.chat_bubble_outline,
                 title: 'Pesan',
                 content:
-                    'Semoga praktikum Mobile ke depannya semakin '
-                    'seru dan menambah wawasan kami dalam pengembangan '
-                    'aplikasi Android menggunakan Flutter.',
+                    'Dunia hanya sesaat, game selamanya',
+              ),
+
+              // Kritik
+              _buildInfoCard(
+                context: context,
+                icon: Icons.rate_review_outlined,
+                title: 'Kritik',
+                content:
+                    'nonono',
+              ),
+
+              // Saran
+              _buildInfoCard(
+                context: context,
+                icon: Icons.lightbulb_outline,
+                title: 'Saran',
+                content:
+                    'hidup jo...',
               ),
 
               const SizedBox(height: 10),
@@ -255,7 +267,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        'Belajar hari ini, sukses di masa depan.',
+                        'Terus belajarrr,',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -264,7 +276,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       SizedBox(height: 6),
                       Text(
-                        '- King Store',
+                        '- King Games Store',
                         style: TextStyle(
                           color: Colors.grey,
                         ),
